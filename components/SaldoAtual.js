@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function SaldoAtual({ saldo }) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Valor Atual</Text>
+            <Text style={styles.title}>Saldo Atual</Text>
             <Text style={styles.saldo}>R$ {saldo.toFixed(2)}</Text>
         </View>
     );
@@ -13,8 +13,10 @@ export default function SaldoAtual({ saldo }) {
 
 const styles = StyleSheet.create({
     container: {
+        width: 327,
+        height: 102,
         padding: 20,
-        backgroundColor: '#f9f9f9',
+        backgroundColor: '#E5F0DB',
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
@@ -29,14 +31,19 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     title: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        textAlign: 'center', // Centralizar o texto
+        fontSize: 14,
+        fontWeight: '400',
+        lineHeight: 18.2,
+        textAlign: 'center',
         marginBottom: 5,
+        fontFamily: 'Nunito Sans',
     },
     saldo: {
-        fontSize: 24,
-        color: '#2196F3',
-        textAlign: 'center', // Centralizar o texto
+        fontSize: 32,
+        fontWeight: '700',
+        lineHeight: 41.6,
+        color: '#000000',
+        textAlign: 'center',
+        fontFamily: 'Nunito Sans',
     },
 });
