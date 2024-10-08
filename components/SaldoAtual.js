@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
         lineHeight: 18.2,
         textAlign: 'center',
         marginBottom: 5,
-        fontFamily: 'Nunito Sans',
     },
     saldo: {
         fontSize: 32,
@@ -44,6 +43,5 @@ const styles = StyleSheet.create({
         lineHeight: 41.6,
         color: '#000000',
         textAlign: 'center',
-        fontFamily: 'Nunito Sans',
     },
 });
