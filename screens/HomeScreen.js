@@ -1,14 +1,16 @@
-// screens/HomeScreen.js
+
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import SaldoAtual from '../components/SaldoAtual'; 
+import SaldoAtual from '../components/SaldoAtual';
+import CaixaMovimentacao from '../components/Movimentacao'; 
 
 export default function HomeScreen() {
     const saldo = 97.25; 
 
     return (
         <View style={styles.container}>
-            <SaldoAtual saldo={saldo} /> 
+            <SaldoAtual saldo={saldo} />
+            <CaixaMovimentacao /> 
         </View>
     );
 }
@@ -18,6 +20,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start', 
-        paddingTop: 40, 
+        paddingTop: 20, 
+        backgroundColor: '#ffff'
     },
 });
