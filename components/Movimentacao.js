@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     titulo: {
-        fontFamily: 'Nunito Sans',
         fontSize: 16,
         fontWeight: '400',
         lineHeight: 20.8,
@@ -54,7 +53,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     botaoTexto: {
-        fontFamily: 'Nunito Sans',
         fontSize: 14,
         fontWeight: '700',
         lineHeight: 18.2,
