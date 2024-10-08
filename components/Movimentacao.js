@@ -1,22 +1,21 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native'; // Importa o hook de navegação
 
-export default function HomeScreen() {
-    const navigation = useNavigation();
+export default function CaixaMovimentacao() {
+    const navigation = useNavigation(); // Obtém o objeto de navegação
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Tela Inicial</Text>
-            {/* Botão que navega para a tela NovaMovimentacao */}
-            <TouchableOpacity
-                style={styles.botao}
-                onPress={() => navigation.navigate('NovaMovimentacao')}
-            >
-                <Icon name="plus" size={16} color="#FFFFFF" />
-                <Text style={styles.botaoTexto}>Nova Movimentação</Text>
-            </TouchableOpacity>
+            <View style={styles.caixa}>
+                <Text style={styles.titulo}>Movimentação</Text>
+                {/* Botão clicável que redireciona para a tela NovaMovimentacao */}
+                <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('NovaMovimentacao')}>
+                    <Icon name="plus" size={16} color="#FFFFFF" /> 
+                    <Text style={styles.botaoTexto}>Movimentação</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -26,12 +25,23 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
     },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
+    caixa: {
+        width: 327,
+        padding: 16,
+        paddingTop: 24,
+        backgroundColor: '#ffff',
+        borderRadius: 10,
+        marginVertical: 8,
+        alignItems: 'center',
+    },
+    titulo: {
+        fontFamily: 'Nunito Sans',
+        fontSize: 16,
+        fontWeight: '400',
+        lineHeight: 20.8,
+        textAlign: 'left',
+        width: '100%',
     },
     botao: {
         width: 327,
@@ -40,12 +50,16 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 8,
         flexDirection: 'row',
-        marginTop: 16,
     },
     botaoTexto: {
-        fontSize: 16,
-        color: '#fff',
+        fontFamily: 'Nunito Sans',
+        fontSize: 14,
+        fontWeight: '700',
+        lineHeight: 18.2,
+        textAlign: 'left',
+        color: '#FFFFFF',
         marginLeft: 8,
     },
 });
