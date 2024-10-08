@@ -28,7 +28,7 @@ export default function App() {
         <Stack.Screen 
           name="NovaMovimentacao" 
           component={NovaMovimentacao} 
-          options={{ title: 'Nova Movimentação' }} 
+          options={{ headerShown: false }} 
         />
       </Stack.Navigator>
       <StatusBar style="auto" />
