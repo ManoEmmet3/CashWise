@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, StatusBar, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, StatusBar, TextInput, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Picker } from '@react-native-picker/picker'; // Importando do novo pacote
 
@@ -23,41 +23,53 @@ export default function NovaMovimentacao() {
                 </TouchableOpacity>
                 <Text style={styles.hora}>Nova Movimentação</Text>
             </View>
-            <View style={styles.secondBox}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Descrição"
-                    value={descricao}
-                    onChangeText={setDescricao}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Data (DD/MM/AAAA)"
-                    value={data}
-                    onChangeText={setData}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Hora (HH:MM)"
-                    value={hora}
-                    onChangeText={setHora}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Valor"
-                    value={valor}
-                    onChangeText={setValor}
-                    keyboardType="numeric" // Para aceitar apenas números
-                />
-                <Picker
-                    selectedValue={tipo}
-                    style={styles.picker}
-                    onValueChange={(itemValue) => setTipo(itemValue)}
-                >
-                    <Picker.Item label="Receita" value="receita" />
-                    <Picker.Item label="Despesa" value="despesa" />
-                </Picker>
-            </View>
+            <ScrollView contentContainerStyle={styles.secondBox}>
+                <View style={styles.inputContainer}>
+                    <Text style={styles.label}>Descrição</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={descricao}
+                        onChangeText={setDescricao}
+                    />
+
+                    <View style={styles.row}>
+                        <View style={styles.inputWrapper}>
+                            <Text style={styles.label}>Data </Text>
+                            <TextInput
+                                style={styles.input}
+                                value={data}
+                                onChangeText={setData}
+                            />
+                        </View>
+                        <View style={styles.inputWrapper}>
+                            <Text style={styles.label}>Hora </Text>
+                            <TextInput
+                                style={styles.input}
+                                value={hora}
+                                onChangeText={setHora}
+                            />
+                        </View>
+                    </View>
+
+                    <Text style={styles.label}>Valor</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={valor}
+                        onChangeText={setValor}
+                        keyboardType="numeric" // Para aceitar apenas números
+                    />
+
+                    <Text style={styles.label}>Tipo</Text>
+                    <Picker
+                        selectedValue={tipo}
+                        style={styles.picker}
+                        onValueChange={(itemValue) => setTipo(itemValue)}
+                    >
+                        <Picker.Item label="Receita" value="receita" />
+                        <Picker.Item label="Despesa" value="despesa" />
+                    </Picker>
+                </View>
+            </ScrollView>
         </View>
     );
 }
@@ -65,8 +77,6 @@ export default function NovaMovimentacao() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
         backgroundColor: '#DDDEDF',
     },
     firstBox: {
@@ -91,21 +101,45 @@ const styles = StyleSheet.create({
     },
     secondBox: {
         width: '100%',
-        flex: 1,
+        flexGrow: 1,
         backgroundColor: '#FFFFFF',
         borderRadius: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
         padding: 20, // Para dar espaço interno na caixa
     },
+    inputContainer: {
+        width: 327, // Largura fixa
+        height: 'auto', // Altura automática
+        marginTop: 40,
+        marginLeft: 24,
+        gap: 24, // Espaçamento entre os inputs
+        opacity: 1, // Mantendo opacidade visível
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 15, // Espaço entre a linha de inputs e o próximo campo
+    },
+    inputWrapper: {
+        flex: 1, // Faz os inputs ocuparem a mesma proporção
+        marginRight: 12, // Espaço entre Data e Hora
+    },
+    inputWrapperLast: {
+        marginRight: 0, // Para o último item não ter margem direita
+    },
+    label: {
+        width: '100%', // Para garantir que ocupe toda a largura
+        marginBottom: 5, // Espaço entre o label e o input
+        fontSize: 16,
+        fontWeight: '600',
+    },
     input: {
-        height: 40,
+        height: 48, // Altura definida como solicitado
         borderColor: '#ccc',
         borderWidth: 1,
-        borderRadius: 5,
-        width: '100%',
+        borderRadius: 6, // Raio do borda conforme solicitado
+        width: '100%', // 100% da largura
         marginBottom: 15,
-        paddingHorizontal: 10,
+        paddingHorizontal: 14, // Padding conforme solicitado
     },
     picker: {
         height: 40,
