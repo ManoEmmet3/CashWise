@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, TextInput, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Picker } from '@react-native-picker/picker'; // Importando do novo pacote
 
 export default function NovaMovimentacao() {
     const [descricao, setDescricao] = useState('');
@@ -12,6 +11,10 @@ export default function NovaMovimentacao() {
 
     const handleBack = () => {
         console.log("Voltando para a Home");
+    };
+
+    const handleCadastrar = () => {
+        console.log("Movimentação cadastrada!");
     };
 
     return (
@@ -33,7 +36,7 @@ export default function NovaMovimentacao() {
                     />
 
                     <View style={styles.row}>
-                        <View style={styles.inputWrapper}>
+                        <View style={[styles.inputWrapper, styles.spacing]}>
                             <Text style={styles.label}>Data </Text>
                             <TextInput
                                 style={styles.input}
@@ -56,19 +59,36 @@ export default function NovaMovimentacao() {
                         style={styles.input}
                         value={valor}
                         onChangeText={setValor}
-                        keyboardType="numeric" // Para aceitar apenas números
+                        keyboardType="numeric"
                     />
 
-                    <Text style={styles.label}>Tipo</Text>
-                    <Picker
-                        selectedValue={tipo}
-                        style={styles.picker}
-                        onValueChange={(itemValue) => setTipo(itemValue)}
-                    >
-                        <Picker.Item label="Receita" value="receita" />
-                        <Picker.Item label="Despesa" value="despesa" />
-                    </Picker>
+                    <Text style={styles.label}>Selecione</Text>
+                    <View style={styles.tipoContainer}>
+                        <TouchableOpacity
+                            style={[styles.tipoButton, tipo === 'receita' && styles.selectedButton]}
+                            onPress={() => setTipo('receita')}
+                        >
+                            <View style={styles.tipoContent}>
+                                <View style={[styles.bolinha, { backgroundColor: 'green' }]} />
+                                <Text style={styles.tipoText}>Receita</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[styles.tipoButton, tipo === 'despesa' && styles.selectedButton]}
+                            onPress={() => setTipo('despesa')}
+                        >
+                            <View style={styles.tipoContent}>
+                                <View style={[styles.bolinha, { backgroundColor: 'red' }]} />
+                                <Text style={styles.tipoText}>Despesa</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
+
+    
+                <TouchableOpacity style={styles.cadastrarButton} onPress={handleCadastrar}>
+                    <Text style={styles.cadastrarText}>Cadastrar</Text>
+                </TouchableOpacity>
             </ScrollView>
         </View>
     );
@@ -104,46 +124,83 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         backgroundColor: '#FFFFFF',
         borderRadius: 20,
-        padding: 20, // Para dar espaço interno na caixa
+        padding: 20,
     },
     inputContainer: {
-        width: 327, // Largura fixa
-        height: 'auto', // Altura automática
+        width: 327,
+        height: 'auto',
         marginTop: 40,
         marginLeft: 24,
-        gap: 24, // Espaçamento entre os inputs
-        opacity: 1, // Mantendo opacidade visível
+        gap: 24,
+        opacity: 1,
     },
     row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 15, // Espaço entre a linha de inputs e o próximo campo
+        marginBottom: 15,
     },
     inputWrapper: {
-        flex: 1, // Faz os inputs ocuparem a mesma proporção
-        marginRight: 12, // Espaço entre Data e Hora
+        flex: 1,
     },
-    inputWrapperLast: {
-        marginRight: 0, // Para o último item não ter margem direita
+    spacing: {
+        marginRight: 12, 
+        
     },
     label: {
-        width: '100%', // Para garantir que ocupe toda a largura
-        marginBottom: 5, // Espaço entre o label e o input
+        width: '100%',
+        marginBottom: 5,
         fontSize: 16,
         fontWeight: '600',
     },
     input: {
-        height: 48, // Altura definida como solicitado
+        height: 48,
         borderColor: '#ccc',
         borderWidth: 1,
-        borderRadius: 6, // Raio do borda conforme solicitado
-        width: '100%', // 100% da largura
-        marginBottom: 15,
-        paddingHorizontal: 14, // Padding conforme solicitado
-    },
-    picker: {
-        height: 40,
+        borderRadius: 6,
         width: '100%',
         marginBottom: 15,
+        paddingHorizontal: 14,
+    },
+    tipoContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 15,
+    },
+    tipoButton: {
+        flex: 1,
+        backgroundColor: '#EFF0F0',
+        paddingVertical: 10,
+        borderRadius: 6,
+        alignItems: 'center',
+        marginRight: 10,
+    },
+    tipoContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    bolinha: {
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        marginRight: 8,
+    },
+    tipoText: {
+        fontSize: 14,
+        fontWeight: '600',
+    },
+    cadastrarButton: {
+        width: 327,
+        height: 50,
+        backgroundColor: '#333638',
+        borderRadius: 6,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginVertical: 60,
+    },
+    cadastrarText: {
+        color: '#FFFFFF',
+        fontSize: 16,
+        fontWeight: '600',
     },
 });
