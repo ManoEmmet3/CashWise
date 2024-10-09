@@ -1,16 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { useNavigation } from '@react-navigation/native'; // Importa o hook de navegação
+import { useNavigation } from '@react-navigation/native'; 
 
 export default function CaixaMovimentacao() {
-    const navigation = useNavigation(); // Obtém o objeto de navegação
+    const navigation = useNavigation();
 
     return (
         <View style={styles.container}>
             <View style={styles.caixa}>
                 <Text style={styles.titulo}>Movimentação</Text>
-                {/* Botão clicável que redireciona para a tela NovaMovimentacao */}
                 <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('NovaMovimentacao')}>
                     <Icon name="plus" size={16} color="#FFFFFF" /> 
                     <Text style={styles.botaoTexto}>Movimentação</Text>

@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, TextInput, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';  
 
 export default function NovaMovimentacao() {
+    const navigation = useNavigation(); 
     const [descricao, setDescricao] = useState('');
     const [data, setData] = useState('');
     const [hora, setHora] = useState('');
     const [valor, setValor] = useState('');
-    const [tipo, setTipo] = useState('receita'); // Inicializando com 'receita'
+    const [tipo, setTipo] = useState('receita'); 
 
     const handleBack = () => {
-        console.log("Voltando para a Home");
+        navigation.goBack();  
     };
 
     const handleCadastrar = () => {
@@ -112,7 +114,6 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     hora: {
-        fontFamily: 'Nunito Sans',
         fontWeight: '700',
         fontSize: 18,
         lineHeight: 23.4,
