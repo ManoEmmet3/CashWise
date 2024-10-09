@@ -23,12 +23,14 @@ const LoginScreen = ({ navigation }) => {
             <TextInput
                 style={styles.input}
                 placeholder="Usuário"
+                placeholderTextColor="#000" // Define a cor preta para o placeholder
                 value={username}
                 onChangeText={setUsername}
             />
             <TextInput
                 style={styles.input}
                 placeholder="Senha"
+                placeholderTextColor="#000" // Define a cor preta para o placeholder
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
     input: {
         width: '100%',      
         height: 52,
-        borderColor: '#000',
+        borderColor: 'grey',
         borderWidth: 1,
         marginBottom: 16,
         paddingLeft: 8,
@@ -81,6 +83,7 @@ const styles = StyleSheet.create({
 });
 
 export default LoginScreen;
+
 
 
 
