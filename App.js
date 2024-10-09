@@ -1,25 +1,31 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
-import * as SplashScreen from 'expo-splash-screen'
+import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen'; // Importar a HomeScreen
 import NovaMovimentacao from './screens/NovaMovimentacao'; // Importar a nova tela
+import LoginScreen from './screens/LoginScreen'; // Importar a tela de Login
 
 const Stack = createNativeStackNavigator();
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  useEffect(() =>{
-    setTimeout(async()=> {
+  useEffect(() => {
+    setTimeout(async () => {
       await SplashScreen.hideAsync();
-    },3000)
-  },[])
+    }, 3000);
+  }, []);
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Login"> 
+        <Stack.Screen 
+          name="Login" 
+          component={LoginScreen} 
+          options={{ headerShown: false }} 
+        />
         <Stack.Screen 
           name="Home" 
           component={HomeScreen} 
@@ -44,3 +50,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
