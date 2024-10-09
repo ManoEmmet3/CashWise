@@ -39,36 +39,36 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center', // Centraliza horizontalmente
+        alignItems: 'center', 
         padding: 16,
         backgroundColor: '#fff',
     },
     image: {
         width: 340,
         height: 140,
-        marginBottom: 32, // Espaçamento abaixo da imagem
+        marginBottom: 32, 
     },
     input: {
-        width: '100%',      // Largura total do input
+        width: '100%',      
         height: 52,
         borderColor: '#000',
         borderWidth: 1,
         marginBottom: 16,
         paddingLeft: 8,
-        borderRadius: 5, // Bordas arredondadas para os inputs
+        borderRadius: 5, 
     },
     button: {
-        width: '100%',     // Largura total do botão
-        height: 52,        // Altura igual aos inputs
-        backgroundColor: '#000', // Cor de fundo do botão
-        justifyContent: 'center', // Centraliza o texto verticalmente
-        alignItems: 'center',     // Centraliza o texto horizontalmente
-        borderRadius: 5, // Bordas arredondadas para o botão
+        width: '100%',     
+        height: 52,        
+        backgroundColor: '#000', 
+        justifyContent: 'center', 
+        alignItems: 'center',     
+        borderRadius: 5, 
     },
     buttonText: {
-        color: '#fff', // Cor do texto do botão
-        fontSize: 16,  // Tamanho da fonte
-        fontWeight: 'bold', // Estilo em negrito
+        color: '#fff', 
+        fontSize: 16,  
+        fontWeight: 'bold', 
     },
 });
 
