@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Image, TouchableOpacity, Text } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Image, TouchableOpacity, Text, Alert } from 'react-native';
 import splash from '../assets/splash.png';
 
 const LoginScreen = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const handleLogin = () => {
+        if (username === 'admin' && password === '1234') {
+            navigation.navigate('Home');
+        } else {
+            Alert.alert('Erro', 'Usuário ou senha incorretos.');
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -27,7 +35,7 @@ const LoginScreen = ({ navigation }) => {
             />
             <TouchableOpacity 
                 style={styles.button}
-                onPress={() => navigation.navigate('Home')}
+                onPress={handleLogin}
             >
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
@@ -73,5 +81,6 @@ const styles = StyleSheet.create({
 });
 
 export default LoginScreen;
+
 
 
