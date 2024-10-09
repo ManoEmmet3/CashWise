@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import SaldoAtual from '../components/SaldoAtual';
@@ -9,8 +8,15 @@ export default function HomeScreen() {
 
     return (
         <View style={styles.container}>
-            <SaldoAtual saldo={saldo} />
-            <CaixaMovimentacao /> 
+
+            <View style={styles.saldoContainer}>
+                <SaldoAtual saldo={saldo} />
+            </View>
+
+
+            <View style={styles.movimentacaoContainer}>
+                <CaixaMovimentacao /> 
+            </View>
         </View>
     );
 }
@@ -18,9 +24,15 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#ffff',
+    },
+    saldoContainer: {
+        marginTop: 90, 
         alignItems: 'center',
-        justifyContent: 'flex-start', 
-        paddingTop: 20, 
-        backgroundColor: '#ffff'
+    },
+    movimentacaoContainer: {
+        marginTop: 50, 
+        alignItems: 'center',
+        height:17
     },
 });
