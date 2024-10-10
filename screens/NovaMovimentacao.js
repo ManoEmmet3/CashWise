@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, StatusBar, TextInput, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';  
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function NovaMovimentacao() {
     const navigation = useNavigation(); 
@@ -10,13 +11,44 @@ export default function NovaMovimentacao() {
     const [hora, setHora] = useState('');
     const [valor, setValor] = useState('');
     const [tipo, setTipo] = useState('receita'); 
+    const [movimentacoes, setMovimentacoes] = useState([]);
+
+    useEffect(() => {
+        const carregarMovimentacoes = async () => {
+            try {
+                const dados = await AsyncStorage.getItem('movimentacoes');
+                if (dados) {
+                    setMovimentacoes(JSON.parse(dados));
+                }
+            } catch (error) {
+                console.error("Erro ao carregar movimentações", error);
+            }
+        };
+        carregarMovimentacoes();
+    }, []);
 
     const handleBack = () => {
         navigation.goBack();  
     };
 
-    const handleCadastrar = () => {
-        console.log("Movimentação cadastrada!");
+    const handleCadastrar = async () => {
+        const novaMovimentacao = { descricao, data, hora, valor, tipo };
+        const novasMovimentacoes = [...movimentacoes, novaMovimentacao];
+        setMovimentacoes(novasMovimentacoes);
+        
+        // Salvar movimentações no AsyncStorage
+        try {
+            await AsyncStorage.setItem('movimentacoes', JSON.stringify(novasMovimentacoes));
+            console.log("Movimentação cadastrada!", novaMovimentacao);
+            // Limpar os campos após o cadastro
+            setDescricao('');
+            setData('');
+            setHora('');
+            setValor('');
+            setTipo('receita');
+        } catch (error) {
+            console.error("Erro ao salvar movimentações", error);
+        }
     };
 
     return (
@@ -87,7 +119,6 @@ export default function NovaMovimentacao() {
                     </View>
                 </View>
 
-    
                 <TouchableOpacity style={styles.cadastrarButton} onPress={handleCadastrar}>
                     <Text style={styles.cadastrarText}>Cadastrar</Text>
                 </TouchableOpacity>
@@ -145,7 +176,6 @@ const styles = StyleSheet.create({
     },
     spacing: {
         marginRight: 12, 
-        
     },
     label: {
         width: '100%',

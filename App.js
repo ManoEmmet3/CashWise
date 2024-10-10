@@ -4,9 +4,9 @@ import { StyleSheet } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './screens/HomeScreen'; // Importar a HomeScreen
-import NovaMovimentacao from './screens/NovaMovimentacao'; // Importar a nova tela
-import LoginScreen from './screens/LoginScreen'; // Importar a tela de Login
+import HomeScreen from './screens/HomeScreen'; 
+import NovaMovimentacao from './screens/NovaMovimentacao';
+import LoginScreen from './screens/LoginScreen'; 
 
 const Stack = createNativeStackNavigator();
 SplashScreen.preventAutoHideAsync();
